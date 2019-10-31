@@ -269,6 +269,9 @@ class Card(models.Model):
         null=True,
         blank=True,
     )
+    @property
+    def responsible_name(self):
+        return ' '.join((self.financially_responsible.first_name, self.financially_responsible.second_name))
 
     @property
     def residual_value(self):
