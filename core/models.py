@@ -220,10 +220,10 @@ class Card(models.Model):
         blank=True
     )
 
-    manufacture_date = models.DateTimeField(
+    manufacture_date = models.DateField(
         verbose_name='дата випуску',
     )
-    acceptance_date = models.DateTimeField(
+    acceptance_date = models.DateField(
         verbose_name='дата вводу до експлуатації',
     )
 
@@ -266,11 +266,13 @@ class Card(models.Model):
 
     description = models.TextField(
         verbose_name='Опис',
+        null=True,
+        blank=True,
     )
 
     @property
     def residual_value(self):
-        return self.start_price - self.depreciation
+        return round(self.start_price - self.depreciation, 2)
 
     @property
     def department_title(self):
@@ -295,6 +297,9 @@ class ComponentType(models.Model):
     class Meta:
         verbose_name = 'Тип компонентів'
         verbose_name_plural = 'Типи компонентів'
+
+    def __str__(self):
+        return f'{self.name[:40] + "..." if len(self.name) > 40 else self.name}'
 
 
 class Component(models.Model):

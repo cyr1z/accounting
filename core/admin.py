@@ -37,7 +37,7 @@ class ComponentAdmin(admin.ModelAdmin):
 
 @admin.register(Card)
 class CardAdmin(admin.ModelAdmin):
-    list_display = ('number', 'name', 'department_title')
+    list_display = ('number', 'name', 'department_title', 'start_price', 'residual_value')
     list_display_links = ('number', 'name')
 
 
