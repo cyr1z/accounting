@@ -276,6 +276,7 @@ class Card(models.Model):
 
     @property
     def department_title(self):
+
         return self.department.title
 
     class Meta:
