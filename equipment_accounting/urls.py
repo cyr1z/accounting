@@ -22,6 +22,8 @@ from equipment_accounting import settings
 urlpatterns = [
     path('', views.index, name='home'),
     path('cards/', views.cards, name='cards'),
+    path('responsible/', views.responsible, name='responsible'),
     path('employees/', views.employees, name='employees'),
+    path('operations/', views.operations, name='operations'),
     path('admin/', admin.site.urls),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -411,6 +411,10 @@ class OperationLog(models.Model):
     def name(self):
         return self.card.name
 
+    @property
+    def type(self):
+        return self.operation_type.title()
+
     class Meta:
         verbose_name = 'Операція'
         verbose_name_plural = 'Операції'
