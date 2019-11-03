@@ -39,29 +39,31 @@
 
           <div class="x_panel">
                      <div class="x_title">
-                  <div class="x_content">
+                  <br class="x_content">
 
 
 
-              <button type="button" class="btn btn-success"><i class="fa fa-plus-square"></i>  Додати</button>
+              <button type="button" class="btn-sm btn-success "><i class="fa fa-plus-square"></i>  Додати</button>
 
-               <button type="button" class="btn btn-primary"><i class="fa fa-exchange"></i>  Передати</button>
+               <button type="button" class="btn-sm btn-primary"><i class="fa fa-exchange"></i>  Передати</button>
 
-              <button type="button" class="btn btn-info"><i class="fa fa-check-square"></i>   Інвентаризація</button>
+              <button type="button" class="btn-sm btn-info"><i class="fa fa-check-square"></i>   Інвентаризація</button>
 
 {#              <button type="button" class="btn btn-warning"><i class="fa fa-check-square"></i>   Інвентаризація</button>#}
+               <button type="button" class="btn-sm btn-primary"><i class="fa fa-money"></i>  Переоцінка</button>
 
+              <button type="button" class="btn-sm btn-info"><i class="fa fa-money"></i> Амортизація</button>
 
+                  </br>
+              <button type="button" class="btn-sm btn-dark"><i class="fa fa-minus-square"></i>  Подати на списання</button>
 
-              <button type="button" class="btn btn-dark"><i class="fa fa-minus-square"></i>  Подати на списання</button>
+              <button type="button" class="btn-sm btn-warning"><i class="fa fa-minus-square"></i>  Списати</button>
 
-              <button type="button" class="btn btn-warning"><i class="fa fa-minus-square"></i>  Списати</button>
+               <button type="button" class="btn-sm btn-dark"><i class="fa fa-trash"></i>  Подати на утилізацію</button>
 
-               <button type="button" class="btn btn-dark"><i class="fa fa-trash"></i>  Подати на утилізацію</button>
+               <button type="button" class="btn-sm btn-danger"><i class="fa fa-trash"></i>  Утилізація</button>
 
-               <button type="button" class="btn btn-danger"><i class="fa fa-trash"></i>  Утилізація</button>
-
-               <button type="button" class="btn btn-default"><i class="fa fa-print"></i></button>
+               <button type="button" class="btn-sm btn-default"><i class="fa fa-print"></i></button>
 
 {#              <button type="button" class="btn btn-link">Link</button>#}
             </div>
@@ -91,8 +93,8 @@
                     <td>
   			 <th><input type="checkbox" id="check-all" class="flat"></th>
   		  </td>
-                    <td>{{card.number}}</td>
-                    <td>{{card.name}}</td>
+                     <td><a href="/cards/{{ card.number }}/">{{card.number}}</a></td>
+                     <td><a href="/cards/{{ card.number }}/">{{card.name}}</a></td>
                     <td>{{card.department|title}}</td>
                     <td>{{card.responsible_name}}</td>
                     <td>{{card.start_price}}</td>

@@ -55,7 +55,7 @@ class SubAccount(models.Model):
         verbose_name_plural = 'Субрахунки'
 
     def __str__(self):
-        return f'{self.number} {self.account} {self.name}'
+        return f'{self.number} {self.name}'
 
 
 class Department(models.Model):
@@ -271,11 +271,14 @@ class Card(models.Model):
     )
     @property
     def responsible_name(self):
-        return ' '.join((self.financially_responsible.first_name, self.financially_responsible.second_name))
+        if self.financially_responsible.first_name:
+            return ' '.join((self.financially_responsible.first_name, self.financially_responsible.second_name))
+        else:
+            return None
 
     @property
     def residual_value(self):
-        return round(self.start_price - self.depreciation, 2)
+        return round(self.start_price - self.depreciation, 2) if (self.start_price - self.depreciation) > 0 else 0
 
     @property
     def department_title(self):
@@ -297,6 +300,8 @@ class ComponentType(models.Model):
         blank=False,
         max_length=255
     )
+
+
 
     class Meta:
         verbose_name = 'Тип компонентів'
@@ -353,6 +358,13 @@ class Component(models.Model):
         verbose_name='Опис',
         blank=True,
         null=True
+    )
+
+    image = models.ImageField(
+        verbose_name='зображення',
+        upload_to='cards',
+        null=True,
+        blank=True
     )
 
     @property

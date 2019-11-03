@@ -22,6 +22,7 @@ from equipment_accounting import settings
 urlpatterns = [
     path('', views.index, name='home'),
     path('cards/', views.cards, name='cards'),
+    path('cards/<pk>/', views.card, name='card'),
     path('responsible/', views.responsible, name='responsible'),
     path('employees/', views.employees, name='employees'),
     path('operations/', views.operations, name='operations'),

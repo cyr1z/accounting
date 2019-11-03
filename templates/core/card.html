@@ -1,0 +1,158 @@
+{% extends "core/base_site.html" %}
+
+{% block title %} {{card.name}} {% endblock title %}
+
+{% block stylesheets %}
+  {{ block.super }}
+{% endblock stylesheets %}
+
+{% block content %}
+  <div class="right_col" role="main">
+    <div class="">
+      <div class="page-title">
+        <div class="title_left">
+          <h3>Інвентарний номер: {{card.number}}</h3>
+        </div>
+
+
+      </div>
+
+      <div class="clearfix"></div>
+
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="x_panel">
+            <div class="x_content">
+
+              <div class="col-md-7 col-sm-7 col-xs-12">
+                <div class="product-image">
+                    {% if card.image %}
+                        <a href="/static/media/{{ card.image }}" target="_blank">
+                            <img src="/static/media/{{ card.image }}" alt="{{card.name}}" />
+                        </a>
+                    {% else %}
+                    <img src="/static/images/no_img.png" alt="{{card.name}}" />
+                    {% endif %}
+
+                </div>
+
+              </div>
+
+              <div class="col-md-5 col-sm-5 col-xs-12" style="border:0px solid #e5e5e5;">
+
+                <h3 class="prod_title">{{card.name}}</h3>
+                  <div class="product_price ">
+
+                        <h4>МВО:   <a href="">{{card.responsible_name}}</a></h4>
+
+                      <p>Відділ: <a href="">{{card.department|title}}</a></p>
+                      {% if card.user %}
+                      <p>Основний користувач: {{card.user}}</p>
+                      {% endif %}
+                      <p>Рахунок: <span class=" badge bg-green">{{card.account}}</span></p>
+                      <p>Субрахунок: <span class=" badge bg-blue">{{card.sub_account}}</span></p>
+                      <p>Кількість: <span class=" badge ">{{card.count}}шт.</span></p>
+                  </div>
+
+
+
+
+                <div class="">
+                  <div class="product_price">
+                    <span class="price-tax">Початкова вартість: {{ card.start_price }}грн.</span></br>
+                    <span class="price-tax">Амортизація: {{ card.depreciation }}грн.</span></br>
+                    <h3 >Залишкова вартість: <span class="green">{{ card.residual_value }}грн.</span></h3>
+                  </div>
+                </div>
+
+
+              </div>
+                                  {% if components %}
+      <div class="col-md-5 col-sm-5 col-xs-12">
+        <div class="x_panel">
+          <div class="x_title">
+            <h2><i class="fa fa-gears"></i> Компоненти</small></h2>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+            <ul class="list-unstyled timeline">
+                {% for component in components %}
+              <li>
+                <div class="block">
+                  <div class="tags">
+                      <h4 class="blue">{{ component.type }}</h4>
+                                      <div class="product-image">
+                    {% if component.image %}
+                        <a href="/static/media/{{ component.image }}" target="_blank">
+                            <img src="/static/media/{{ component.image }}" alt="{{component.name}}" />
+                        </a>
+                    {% else %}
+                    <img src="/static/images/no_img.png" alt="{{component.name}}" />
+                    {% endif %}
+
+                </div>
+
+                  </div>
+                  <div class="block_content ">
+                    <h2 class="title">{{ component.name }}</h2>
+                    <div class="byline">
+                      <span>{{card.number}}</span>
+                    </div>
+                      <div class="product_price ">
+
+
+                        {% if component.department %}
+                      <p>Відділ: <a href="">{{component.department|title}}</a></p>
+                      {% endif %}
+                         {% if component.employee %}
+                      <p>Користувач: {{component.employee}}</p>
+                          {% endif %}
+
+                  </div>
+                  {% if components.description %}
+                       <p class="excerpt">
+                     {{ component.description }}
+                    </p>
+                  {% endif %}
+                </div>
+              </li>
+                {% endfor %}
+            </ul>
+
+          </div>
+        </div>
+      </div>
+      {% endif %}
+{% if card.description %}
+<div class="col-md-12 col-sm-12 col-xs-12">
+<p>{{ card.description }}</p>
+</div>{% endif %}
+            </div>
+                          <div class="col-md-12 col-sm-12 col-xs-12">
+                  <button type="button" class="btn btn-primary "><i class="fa fa-exchange"></i> Передати</button>
+                  <button type="button" class="btn btn-info"><i class="fa fa-check-square"></i>   Інвентаризація</button>
+                    <button type="button" class="btn btn-primary"><i class="fa fa-money"></i>  Переоцінка</button>
+
+              <button type="button" class="btn btn-info"><i class="fa fa-money"></i> Амортизація</button>
+
+
+              <button type="button" class="btn btn-dark"><i class="fa fa-minus-square"></i>  Подати на списання</button>
+
+              <button type="button" class="btn btn-warning"><i class="fa fa-minus-square"></i>  Списати</button>
+
+               <button type="button" class="btn btn-dark"><i class="fa fa-trash"></i>  Подати на утилізацію</button>
+
+               <button type="button" class="btn btn-danger"><i class="fa fa-trash"></i>  Утилізація</button>
+                </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+{% endblock content %}
+
+{% block javascripts %}
+  {{ block.super }}
+{% endblock javascripts %}
