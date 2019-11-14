@@ -106,6 +106,13 @@ class Employee(models.Model):
         null=True
     )
 
+    image = models.ImageField(
+        verbose_name='зображення',
+        upload_to='employee',
+        null=True,
+        blank=True
+    )
+
     @property
     def department_title(self):
         return self.department.title
@@ -145,6 +152,13 @@ class Responsible(models.Model):
         on_delete=models.SET_NULL,
         blank=True,
         null=True
+    )
+
+    image = models.ImageField(
+        verbose_name='зображення',
+        upload_to='employee',
+        null=True,
+        blank=True
     )
 
     @property
@@ -229,7 +243,6 @@ class Card(models.Model):
 
     count = models.IntegerField(
         verbose_name='Кількість',
-        unique=True,
         null=False,
         blank=False,
         default=1

@@ -1,5 +1,5 @@
 {% extends "core/base_site.html" %}
-
+{% load static %}
 {% block title %} {{card.name}} {% endblock title %}
 
 {% block stylesheets %}
@@ -27,11 +27,11 @@
               <div class="col-md-7 col-sm-7 col-xs-12">
                 <div class="product-image">
                     {% if card.image %}
-                        <a href="/static/media/{{ card.image }}" target="_blank">
-                            <img src="/static/media/{{ card.image }}" alt="{{card.name}}" />
+                        <a href="{% static card.image.url %}" target="_blank">
+                            <img src="{% static card.image.url %}" alt="{{card.name}}" />
                         </a>
                     {% else %}
-                    <img src="/static/images/no_img.png" alt="{{card.name}}" />
+                    <img src="{% static 'images/no_img.png'%}" alt="{{card.name}}" />
                     {% endif %}
 
                 </div>
@@ -41,6 +41,21 @@
               <div class="col-md-5 col-sm-5 col-xs-12" style="border:0px solid #e5e5e5;">
 
                 <h3 class="prod_title">{{card.name}}</h3>
+              <p>
+              {% if card.broken %}
+              <p class="badge bg-orange">Зламано та не підлягає відновленню</p>
+              {% endif %}
+              {% if card.cancel %}
+              <p class="badge bg-red">Списано</p>
+                  {% elif card.filed_for_cancellation %}
+              <p class="badge ">Подано на списання</p>
+              {% endif %}
+                  {% if card.utilize %}
+              <p class="badge bg-red">Утилізовано</p>
+                  {% elif card.filed_for_utilize %}
+              <p class="badge ">Подано на утилізацію</p>
+              {% endif %}
+                 </p>
                   <div class="product_price ">
 
                         <h4>МВО:   <a href="">{{card.responsible_name}}</a></h4>
@@ -71,7 +86,7 @@
       <div class="col-md-5 col-sm-5 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
-            <h2><i class="fa fa-gears"></i> Компоненти</small></h2>
+            <h2><i class="fa fa-gears"></i> Компоненти</h2>
             <div class="clearfix"></div>
           </div>
           <div class="x_content">
@@ -83,11 +98,11 @@
                       <h4 class="blue">{{ component.type }}</h4>
                                       <div class="product-image">
                     {% if component.image %}
-                        <a href="/static/media/{{ component.image }}" target="_blank">
-                            <img src="/static/media/{{ component.image }}" alt="{{component.name}}" />
+                        <a href="{% static component.image.url %}" target="_blank">
+                            <img src="{% static component.image.url %}" alt="{{component.name}}" />
                         </a>
                     {% else %}
-                    <img src="/static/images/no_img.png" alt="{{component.name}}" />
+                    <img src="{% static 'images/no_img.png'%}" alt="{{component.name}}" />
                     {% endif %}
 
                 </div>
@@ -102,17 +117,16 @@
 
 
                         {% if component.department %}
-                      <p>Відділ: <a href="">{{component.department|title}}</a></p>
+                      <p>Відділ: <a href=""><b>{{component.department|title}}</b></a></p>
                       {% endif %}
                          {% if component.employee %}
                       <p>Користувач: {{component.employee}}</p>
                           {% endif %}
 
                   </div>
-                  {% if components.description %}
-                       <p class="excerpt">
-                     {{ component.description }}
-                    </p>
+                  {% if component.description %}
+
+                       <p><pre style="white-space: pre-line; word-break: normal; ">{{ component.description }}</pre></p>
                   {% endif %}
                 </div>
               </li>
@@ -125,7 +139,7 @@
       {% endif %}
 {% if card.description %}
 <div class="col-md-12 col-sm-12 col-xs-12">
-<p>{{ card.description }}</p>
+    <p><pre style="white-space: pre-line; word-break: normal; ">{{ card.description }}</pre></p>
 </div>{% endif %}
             </div>
                           <div class="col-md-12 col-sm-12 col-xs-12">
@@ -134,8 +148,8 @@
                     <button type="button" class="btn btn-primary"><i class="fa fa-money"></i>  Переоцінка</button>
 
               <button type="button" class="btn btn-info"><i class="fa fa-money"></i> Амортизація</button>
-
-
+            <button type="button" class="btn btn-primary "><i class="fa fa-arrows"></i> Переміщення</button>
+                              <br>
               <button type="button" class="btn btn-dark"><i class="fa fa-minus-square"></i>  Подати на списання</button>
 
               <button type="button" class="btn btn-warning"><i class="fa fa-minus-square"></i>  Списати</button>

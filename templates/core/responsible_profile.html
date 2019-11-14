@@ -17,22 +17,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="x_panel">
             <div class="x_title">
-              <h2>User Report <small>Activity report</small></h2>
-              <ul class="nav navbar-right panel_toolbox">
-                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                </li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Settings 1</a>
-                    </li>
-                    <li><a href="#">Settings 2</a>
-                    </li>
-                  </ul>
-                </li>
-                <li><a class="close-link"><i class="fa fa-close"></i></a>
-                </li>
-              </ul>
+              <h2>Матеріально відповідальна особа</h2>
               <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -40,33 +25,32 @@
                 <div class="profile_img">
                   <div id="crop-avatar">
                     <!-- Current avatar -->
-                      {% if employee.image %}
-                        <a href="{% static employee.image.url %}" target="_blank">
-                            <img class="img-responsive avatar-view" src="{% static employee.image.url %}" alt="{{card.name}}" title="Change the avatar">
+                      {% if responsible_profile.image %}
+                        <a href="{% static responsible_profile.image.url %}" target="_blank">
+                            <img class="img-responsive avatar-view" src="{% static responsible_profile.image.url %}" alt="{{responsible_profile.name}}" title="Change the avatar">
                         </a>
                     {% else %}
-                    <img class="img-responsive avatar-view" src="{% static 'images/no_img.png'%}" alt="{{card.name}}" title="Change the avatar">
+                    <img class="img-responsive avatar-view" src="{% static 'images/no_img.png'%}" alt="{{responsible_profile.name}}" title="Change the avatar">
                     {% endif %}
                   </div>
                 </div>
-                <h3>{{ employee.first_name }} {{ employee.second_name }}</h3>
+                <h3>{{ responsible_profile.first_name }} {{ responsible_profile.second_name }}</h3>
 
                 <ul class="list-unstyled user_data">
-                  <li><i class="fa fa-mobile-phone user-profile-icon"></i> {{ employee.phone}}
+                  <li><i class="fa fa-mobile-phone user-profile-icon"></i> {{ responsible_profile.phone}}
                   </li>
 
                   <li>
-                    <i class="fa fa-briefcase user-profile-icon"></i> {{ employee.position }}
+                    <i class="fa fa-briefcase user-profile-icon"></i> {{ responsible_profile.position }}
                   </li>
 
                   <li class="m-top-xs">
                     <i class="fa fa-group user-profile-icon"></i>
-                    <a href="http://www.kimlabs.com/profile/" target="_blank">{{ employee.department|title }}</a>
+                    <a href="http://www.kimlabs.com/profile/" target="_blank">{{ responsible_profile.department|title }}</a>
                   </li>
                 </ul>
 
                 <a class="btn btn-success"><i class="fa fa-edit m-right-xs"></i> Редагувати</a>
-                <br /><a class="btn btn-warning"><i class="fa fa-copy m-right-xs"></i> Додати до МВ</a>
                 <br />
 
 

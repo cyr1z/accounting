@@ -93,8 +93,8 @@
                     <td>
   			 <th><input type="checkbox" id="check-all" class="flat"></th>
   		  </td>
-                     <td><a href="/cards/{{ card.number }}/">{{card.number}}</a></td>
-                     <td><a href="/cards/{{ card.number }}/">{{card.name}}</a></td>
+                     <td><a href="{% url 'core:card' card.number %}">{{card.number}}</a></td>
+                     <td><a href="{% url 'core:card' card.number %}">{{card.name}}</a></td>
                     <td>{{card.department|title}}</td>
                     <td>{{card.responsible_name}}</td>
                     <td>{{card.start_price}}</td>

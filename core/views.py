@@ -23,6 +23,16 @@ def employees(request):
     return render(request, 'core/employees.html', ctx)
 
 
+def employee(request, pk):
+    ctx = {'employee': Employee.objects.get(pk=pk)}
+    return render(request, 'core/profile.html', ctx,)
+
+
+def responsible_profile(request, pk):
+    ctx = {'responsible_profile': Responsible.objects.get(pk=pk)}
+    return render(request, 'core/responsible_profile.html', ctx,)
+
+
 def responsible(request):
     ctx = {'responsible': Responsible.objects.all()}
     return render(request, 'core/responsible.html', ctx)

@@ -71,8 +71,8 @@
                     <td>
   			 <th><input type="checkbox" id="check-all" class="flat"></th>
   		  </td>
-                    <td>{{employee.first_name}}</td>
-                    <td>{{employee.second_name}}</td>
+                    <td><a href="{% url 'core:employee' employee.pk %}">{{employee.first_name}}</a></td>
+                    <td><a href="{% url 'core:employee' employee.pk %}">{{employee.second_name}}</a></td>
                     <td>{{employee.department_title}}</td>
                     <td>{{employee.position}}</td>
                     <td>{{employee.phone}}</td>

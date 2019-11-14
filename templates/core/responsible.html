@@ -71,8 +71,8 @@
                     <td>
   			 <th><input type="checkbox" id="check-all" class="flat"></th>
   		  </td>
-                    <td>{{r.first_name}}</td>
-                    <td>{{r.second_name}}</td>
+                     <td><a href="{% url 'core:responsible_profile' r.pk %}">{{r.first_name}}</a></td>
+                    <td><a href="{% url 'core:responsible_profile' r.pk %}">{{r.second_name}}</a></td>
                     <td>{{r.department_title}}</td>
                     <td>{{r.position}}</td>
                     <td>{{r.phone}}</td>
