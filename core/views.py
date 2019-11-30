@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from core.models import Card, Employee, OperationLog, Responsible, Component, Account, SubAccount
-from django.shortcuts import get_object_or_404
-from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
+# from django.shortcuts import get_object_or_404
+# from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 
 
 def index(request):

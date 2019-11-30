@@ -1,9 +1,9 @@
 from django.db import models
-from django.utils.text import slugify
-from django.utils import timezone
-from django.core.validators import MinValueValidator, MaxValueValidator
-from django.urls import reverse
-from autoslug import AutoSlugField
+# from django.utils.text import slugify
+# from django.utils import timezone
+# from django.core.validators import MinValueValidator, MaxValueValidator
+# from django.urls import reverse
+# from autoslug import AutoSlugField
 
 # Create your models here.
 
@@ -337,8 +337,6 @@ class ComponentType(models.Model):
         blank=False,
         max_length=255
     )
-
-
 
     class Meta:
         verbose_name = 'Тип компонентів'
