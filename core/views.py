@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from core.models import Card, Employee, OperationLog, Responsible, Component
+from core.models import Card, Employee, OperationLog, Responsible, Component, Account, SubAccount
 from django.shortcuts import get_object_or_404
+from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 
 
 def index(request):
@@ -9,7 +10,12 @@ def index(request):
 
 
 def cards(request):
-    ctx = {'cards': Card.objects.all()}
+    ctx = {'cards': Card.objects.all(),
+           'accounts': Account.objects.all(),
+           'subaccounts': SubAccount.objects.all(),
+           'responsibles': Responsible.objects.all()}
+    if request.method == 'POST':
+        print(request.POST)
     return render(request, 'core/cards.html', ctx)
 
 

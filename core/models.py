@@ -1,4 +1,9 @@
 from django.db import models
+from django.utils.text import slugify
+from django.utils import timezone
+from django.core.validators import MinValueValidator, MaxValueValidator
+from django.urls import reverse
+from autoslug import AutoSlugField
 
 # Create your models here.
 
@@ -117,6 +122,10 @@ class Employee(models.Model):
     def department_title(self):
         return self.department.title
 
+    @property
+    def cards(self):
+        return Card.objects.filter(user=self)
+
     class Meta:
         verbose_name = 'Співробітника'
         verbose_name_plural = 'Співробітники'
@@ -164,6 +173,21 @@ class Responsible(models.Model):
     @property
     def department_title(self):
         return self.department.title
+
+    @property
+    def cards(self):
+        return self.card_set.all()
+
+    @property
+    def cards_count(self):
+        return self.card_set.count()
+
+    @property
+    def cards_sum(self):
+        sum_value = 0
+        for i in self.card_set.all():
+            sum_value += i.residual_value
+        return sum_value
 
     class Meta:
         verbose_name = 'Материально відповідальну особу',

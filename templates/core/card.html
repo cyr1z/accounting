@@ -58,7 +58,7 @@
                  </p>
                   <div class="product_price ">
 
-                        <h4>МВО:   <a href="">{{card.responsible_name}}</a></h4>
+                        <h4>МВО:   <a href="{% url "core:responsible_profile" card.financially_responsible.pk %}">{{card.responsible_name}}</a></h4>
 
                       <p>Відділ: <a href="">{{card.department|title}}</a></p>
                       {% if card.user %}

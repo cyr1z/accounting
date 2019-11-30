@@ -68,6 +68,67 @@
 {#              <button type="button" class="btn btn-link">Link</button>#}
             </div>
 
+
+<div class="col-md-12 col-xs-12">
+          <div class="x_panel">
+            <div class="x_title">
+              <h2>Фільтри</h2>
+              <ul class="nav navbar-right panel_toolbox">
+                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+
+              </ul>
+              <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+              <form class="form-horizontal form-label-left" action="" name="filters" method="post">
+                {% csrf_token %}
+
+                <div class="form-group col-md-3">
+                  <label class="control-label col-md-4 col-sm-4 col-xs-4">Рахунок</label>
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                    <select class="form-control" name="acc">
+                      <option value="0">Всі</option>
+                        {% for acc in accounts %}
+                      <option value="{{ acc.number }}">{{ acc.number }} {{ acc.name }}</option>
+                        {% endfor %}
+
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group col-md-3">
+                  <label class="control-label col-md-4 col-sm-4 col-xs-4">Субрахунок</label>
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                    <select class="form-control" name="subacc">
+                        <option value="0">Всі</option>
+                        {% for sub in subaccounts %}
+                      <option value="{{ sub.number }}">{{ sub.number }} {{ sub.name }}</option>
+                        {% endfor %}
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group col-md-3">
+                  <label class="control-label col-md-2 col-sm-2 col-xs-2">МВО</label>
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                    <select class="form-control" name="resp">
+                      <option  value="0">Всі</option>
+                        {% for resp in responsibles %}
+                      <option value="{{ resp.pk }}">{{ resp.first_name }} {{ resp.second_name }}</option>
+                        {% endfor %}
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group col-md-3 col-sm-12">
+                  <div style="padding-top: 2em">
+                    <button type="reset" class="btn btn-primary">Reset</button>
+                    <button type="submit" class="btn btn-success">Submit</button>
+                  </div>
+                </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
               <div class="clearfix"></div>
             </div>
 
@@ -96,7 +157,7 @@
                      <td><a href="{% url 'core:card' card.number %}">{{card.number}}</a></td>
                      <td><a href="{% url 'core:card' card.number %}">{{card.name}}</a></td>
                     <td>{{card.department|title}}</td>
-                    <td>{{card.responsible_name}}</td>
+                    <td><a href="{% url "core:responsible_profile" card.financially_responsible.pk %}">{{card.responsible_name}}</a></td>
                     <td>{{card.start_price}}</td>
                     <td>{{card.residual_value}}</td>
                   </tr>
