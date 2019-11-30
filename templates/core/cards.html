@@ -90,7 +90,7 @@
                     <select class="form-control" name="acc">
                       <option value="0">Всі</option>
                         {% for acc in accounts %}
-                      <option value="{{ acc.number }}">{{ acc.number }} {{ acc.name }}</option>
+                      <option value="{{ acc.number }}" {% if cf.acc and cf.acc == acc.number %}selected{% endif %} >{{ acc.number }} {{ acc.name }}</option>
                         {% endfor %}
 
                     </select>
@@ -102,7 +102,7 @@
                     <select class="form-control" name="subacc">
                         <option value="0">Всі</option>
                         {% for sub in subaccounts %}
-                      <option value="{{ sub.number }}">{{ sub.number }} {{ sub.name }}</option>
+                      <option value="{{ sub.number }}" {% if cf.subacc and cf.subacc == sub.number %}selected{% endif %} >{{ sub.number }} {{ sub.name }}</option>
                         {% endfor %}
                     </select>
                   </div>
@@ -113,7 +113,7 @@
                     <select class="form-control" name="resp">
                       <option  value="0">Всі</option>
                         {% for resp in responsibles %}
-                      <option value="{{ resp.pk }}">{{ resp.first_name }} {{ resp.second_name }}</option>
+                            <option value="{{ resp.pk }}" {% if cf.resp and cf.resp == resp.pk %}selected{% endif %} >{{ resp.first_name }} {{ resp.second_name }}</option>
                         {% endfor %}
                     </select>
                   </div>

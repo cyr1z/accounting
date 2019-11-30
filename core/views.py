@@ -10,12 +10,34 @@ def index(request):
 
 
 def cards(request):
-    ctx = {'cards': Card.objects.all(),
-           'accounts': Account.objects.all(),
-           'subaccounts': SubAccount.objects.all(),
-           'responsibles': Responsible.objects.all()}
+    cards_filtered = Card.objects.all()
+    ctx = {}
     if request.method == 'POST':
-        print(request.POST)
+        cf = request.POST
+        ctx_cf = {}
+        if 'acc' in cf and cf['acc']:
+            i = int(cf['acc'])
+            if i:
+                cards_filtered = cards_filtered.filter(account=i)
+                ctx_cf['acc'] = i
+        if 'subacc' in cf and cf['subacc']:
+            i = int(cf['subacc'])
+            if i:
+                cards_filtered = cards_filtered.filter(sub_account=i)
+                ctx_cf['subacc'] = i
+        if 'resp' in cf and cf['resp']:
+            i = int(cf['resp'])
+            if i:
+                cards_filtered = cards_filtered.filter(financially_responsible__pk=i)
+                ctx_cf['resp'] = i
+        if ctx_cf:
+            ctx['cf'] = ctx_cf
+
+    ctx['cards'] = cards_filtered
+    ctx['accounts'] = Account.objects.all()
+    ctx['subaccounts'] = SubAccount.objects.all()
+    ctx['responsibles'] = Responsible.objects.all()
+
     return render(request, 'core/cards.html', ctx)
 
 
